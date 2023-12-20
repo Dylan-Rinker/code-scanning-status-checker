@@ -20,7 +20,7 @@ get_codeql_conclusion() {
           commits(last: 1) {
             nodes {
               commit {
-                checkSuites(first: 1, filterBy: {checkName: "CodeQL"}) {
+                checkSuites(first: 1, filterBy: {checkName: "dependency-review"}) {
                   nodes {
                     checkRuns(first: 1) {
                       nodes {
@@ -43,6 +43,8 @@ get_codeql_conclusion() {
 
 conclusion=$(get_codeql_conclusion)
 if [ "$conclusion" != "SUCCESS" ]; then
-  echo "CodeQL check failed"
+  echo "Dependency Review check failed"
   exit 1
 fi
+
+echo "Dependency Review check passed"
