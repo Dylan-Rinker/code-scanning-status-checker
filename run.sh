@@ -42,6 +42,7 @@ get_codeql_conclusion() {
 }
 
 conclusion=$(get_codeql_conclusion)
+echo "Conclusion: $conclusion"
 if [ "$conclusion" != "SUCCESS" ]; then
   echo "Dependency Review check failed"
   exit 1
