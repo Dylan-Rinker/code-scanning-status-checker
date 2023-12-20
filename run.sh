@@ -39,7 +39,7 @@ get_codeql_conclusion() {
     }
   ')
   echo "Reponse: $response"
-  echo $response | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.checkSuites.nodes[0].checkRuns.nodes[0].conclusion'
+  echo $response | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.checkSuites.nodes[0].checkRuns.nodes[7].conclusion'
 }
 
 conclusion=$(get_codeql_conclusion)
