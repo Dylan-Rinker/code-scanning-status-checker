@@ -20,9 +20,9 @@ get_codeql_conclusion() {
           commits(last: 1) {
             nodes {
               commit {
-                checkSuites(first: 1, filterBy: {checkName: "dependency-review"}) {
+                checkSuites(first: 100) {
                   nodes {
-                    checkRuns(first: 1) {
+                    checkRuns(first: 1, filterBy: {checkName: "dependency-review"}) {
                       nodes {
                         name
                         status
@@ -38,7 +38,6 @@ get_codeql_conclusion() {
       }
     }
   ')
-  echo "Response: $response"
   echo $response | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.checkSuites.nodes[0].checkRuns.nodes[0].conclusion'
 }
 
